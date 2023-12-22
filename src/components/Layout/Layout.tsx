@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import Header from "../../Commponent/Header/Header"; //TODO: "Commponent" is not correct. change it to component. name of folders should be camelCase
+import Header from "./Header"; //TODO: "Commponent" is not correct. change it to component. name of folders should be camelCase
 
 const Layout = () => {
   return (
@@ -9,5 +9,5 @@ const Layout = () => {
       <Outlet />
     </div>
   );
-}
+};
 export default Layout;

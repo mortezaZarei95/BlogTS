@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-
 const Header = () => {
   const handleNavLinkClass = (isActive: boolean) => {
     return (
@@ -9,30 +8,28 @@ const Header = () => {
     );
   };
   return (
+    //TODO: 'NavLink' is used several times with same className and conditions. its better if it became a Component
     <div className="mt-8 flex gap-4 justify-center">
       <NavLink
         to={"/"}
         className={({ isActive }) => handleNavLinkClass(isActive)}
       >
-        {" "}
-        Posts{" "}
+        Posts
       </NavLink>
       <NavLink
         to={"/newpost"}
         className={({ isActive }) => handleNavLinkClass(isActive)}
       >
-        {" "}
-        New Post{" "}
+        New Post
       </NavLink>
       <NavLink
         to={"/saved"}
         className={({ isActive }) => handleNavLinkClass(isActive)}
       >
-        {" "}
-        Saved{" "}
+        Saved
       </NavLink>
     </div>
   );
-}
+};
 
 export default Header;

@@ -3,8 +3,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Layout from "../Pages/Layout/Layout";
-import NotFount from "../Pages/Layout/NotFound";
+import Layout from "../components/Layout/Layout";
+import NotFount from "../components/Layout/NotFound";
 import Posts, { Post } from '../Pages/Posts/Posts';
 import NewPost from '../Pages/New Post/NewPost';
 import Saved from '../Pages/Saved/Saved';
