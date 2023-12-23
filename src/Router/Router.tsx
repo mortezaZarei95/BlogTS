@@ -1,30 +1,33 @@
-import React, { createContext, useState } from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Layout from "../Pages/Layout/Layout";
-import NotFount from "../Pages/Layout/NotFound";
-import Posts, { Post } from '../Pages/Posts/Posts';
-import NewPost from '../Pages/New Post/NewPost';
-import Saved from '../Pages/Saved/Saved';
+import React, { createContext, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "../components/Layout/Layout";
+import NotFount from "../components/Layout/NotFound";
+import Posts, { Post } from "../Pages/Posts/Posts";
+import NewPost from "../Pages/New Post/NewPost";
+import Saved from "../Pages/Saved/Saved";
 
 interface BlogContextType {
-  posts : Post[],
-  setposts : (postList:Post[])=>void,
-  savedposts : Post[],
-  savedsetposts : (savedpostlist:Post[])=>void
+  posts: Post[];
+  setposts: (postList: Post[]) => void;
+  savedposts: Post[];
+  savedsetposts: (savedpostlist: Post[]) => void;
 }
 
-export const BlogContext = createContext<BlogContextType>({posts:[], setposts:()=>{} , savedposts:[], savedsetposts:()=>{}})
-const Router =() => {
-
-  const [posts, setposts] = useState<Post[]>([])
-  const [savedposts, savedsetposts] = useState<Post[]>([])
+export const BlogContext = createContext<BlogContextType>({
+  posts: [],
+  setposts: () => {},
+  savedposts: [],
+  savedsetposts: () => {},
+});
+const Router = () => {
+  const [posts, setposts] = useState<Post[]>([]); //TODO: setposts => setPosts
+  const [savedposts, savedsetposts] = useState<Post[]>([]);
   console.log(BlogContext);
-  
-  const router = createBrowserRouter([
-        {
+
+  const router = createBrowserRouter(
+    //TODO: that would be nice if you move this array to routeList.ts file
+    [
+      {
         path: "/",
         element: <Layout />,
         errorElement: <NotFount />,
@@ -35,20 +38,23 @@ const Router =() => {
           },
           {
             path: "/newpost",
-            element: <NewPost />
+            element: <NewPost />,
           },
           {
             path: "/saved",
-            element: <Saved />
-         },
-        ]
-      }, 
-  ]);
+            element: <Saved />,
+          },
+        ],
+      },
+    ]
+  );
   return (
-        <BlogContext.Provider value={{posts , setposts , savedposts , savedsetposts}}>
-        <RouterProvider router={router} />
-        </BlogContext.Provider>  
-  )
-}
+    <BlogContext.Provider
+      value={{ posts, setposts, savedposts, savedsetposts }}
+    >
+      <RouterProvider router={router} />
+    </BlogContext.Provider>
+  );
+};
 
-export default Router
+export default Router;
