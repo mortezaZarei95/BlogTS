@@ -1,12 +1,12 @@
-import {useContext, useEffect} from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import { BlogContext } from "../../Router/Router";
 import Post from "./Post";
-export interface Post{
-  userId: number,
-  id : number,
-  title: string,
-  body: string
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
 
 const Posts = () => {
@@ -33,7 +33,6 @@ const Posts = () => {
       })}
     </div>
   );
-}
-
+};
 
 export default Posts;

@@ -1,9 +1,8 @@
-
-import { useContext, useState } from "react"
-import {Post as PostType} from "../Posts/Posts"
-import { BlogContext } from "../../Router/Router"
+import { useContext, useState } from "react";
+import { Post as PostType } from "../Posts/Posts";
+import { BlogContext } from "../../Router/Router";
 interface Props {
-  post : PostType
+  post: PostType;
 }
 const Post = ({ post }: Props) => {
   //TODO: Post Components is repeated. in Posts and this component.

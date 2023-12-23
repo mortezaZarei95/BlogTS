@@ -1,11 +1,10 @@
-
-import { useContext, useState , useEffect } from "react"
-import {Post as PostType} from "./Posts"
-import { BlogContext } from "../../Router/Router"
+import { useContext, useState, useEffect } from "react";
+import { Post as PostType } from "./Posts";
+import { BlogContext } from "../../Router/Router";
 interface Props {
-  post : PostType
+  post: PostType;
 }
-const Post = ({post} : Props) => {
+const Post = ({ post }: Props) => {
   useEffect(() => {
     savedposts.includes(post) ? setIsSaved(true) : "";
   }, []);
@@ -48,6 +47,6 @@ const Post = ({post} : Props) => {
       </div>
     </div>
   );
-}
+};
 
 export default Post;

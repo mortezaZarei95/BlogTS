@@ -1,23 +1,25 @@
-import React, { createContext, useState } from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React, { createContext, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import NotFount from "../components/Layout/NotFound";
-import Posts, { Post } from '../Pages/Posts/Posts';
-import NewPost from '../Pages/New Post/NewPost';
-import Saved from '../Pages/Saved/Saved';
+import Posts, { Post } from "../Pages/Posts/Posts";
+import NewPost from "../Pages/New Post/NewPost";
+import Saved from "../Pages/Saved/Saved";
 
 interface BlogContextType {
-  posts : Post[],
-  setposts : (postList:Post[])=>void,
-  savedposts : Post[],
-  savedsetposts : (savedpostlist:Post[])=>void
+  posts: Post[];
+  setposts: (postList: Post[]) => void;
+  savedposts: Post[];
+  savedsetposts: (savedpostlist: Post[]) => void;
 }
 
-export const BlogContext = createContext<BlogContextType>({posts:[], setposts:()=>{} , savedposts:[], savedsetposts:()=>{}})
-const Router =() => {
+export const BlogContext = createContext<BlogContextType>({
+  posts: [],
+  setposts: () => {},
+  savedposts: [],
+  savedsetposts: () => {},
+});
+const Router = () => {
   const [posts, setposts] = useState<Post[]>([]); //TODO: setposts => setPosts
   const [savedposts, savedsetposts] = useState<Post[]>([]);
   console.log(BlogContext);
@@ -53,6 +55,6 @@ const Router =() => {
       <RouterProvider router={router} />
     </BlogContext.Provider>
   );
-}
+};
 
-export default Router
+export default Router;

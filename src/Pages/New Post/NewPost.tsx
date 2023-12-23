@@ -1,9 +1,8 @@
-import { FormEvent, useContext, useEffect, useRef, useState } from "react"
-import { BlogContext } from "../../Router/Router"
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
+import { BlogContext } from "../../Router/Router";
 
-import { Post } from "../Posts/Posts"
-import { useNavigate } from "react-router"
-
+import { Post } from "../Posts/Posts";
+import { useNavigate } from "react-router";
 
 const NewPost = () => {
   useEffect(() => {
@@ -101,4 +100,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost
+export default NewPost;
