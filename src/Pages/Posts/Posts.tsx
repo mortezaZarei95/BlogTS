@@ -1,7 +1,8 @@
-import { useContext, useEffect } from "react";
-import axios from "axios";
-import { BlogContext } from "../../Router/Router";
-import Post from "./Post";
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { BlogContext } from '../../Router/Router';
+import Post from '../../components/page/post/Post';
+import Pagination from '../../components/common/pagination/Pagination';
 export interface Post {
   userId: number;
   id: number;
@@ -10,27 +11,42 @@ export interface Post {
 }
 
 const Posts = () => {
-  const { posts, setposts } = useContext(BlogContext);
-  const api = "https://jsonplaceholder.typicode.com/posts?_page=0&_limit=15"; //TODO: send 'page' and 'limit' as axios parameters
+  const [totalPost, setTotalPost] = useState<number>(0);
+  const { posts, setPosts } = useContext(BlogContext);
+  const api = 'https://jsonplaceholder.typicode.com/posts';
   // ? that would be fantastic if you create an services.ts file and call api in functions.
 
   useEffect(() => {
-    getPost();
+    getPost(1);
   }, []);
 
-  const getPost = async () => {
-    if (posts.length === 0) {
-      await axios(api).then((res) => {
-        setposts(res.data);
+  const getPost = async (activePage: number) => {
+    await axios
+      .get(api, {
+        params: {
+          _page: activePage,
+          _limit: 3,
+        },
+      })
+      .then((res) => {
+        setPosts(res.data);
+        setTotalPost(100);
       });
-    }
+  };
+
+  const handlePage = (page: number) => {
+    getPost(page);
   };
 
   return (
     <div className="mt-4 flex flex-col gap-2 items-center">
       {posts.map((post) => {
-        return <Post post={post} />;
+        return <Post post={post} key={post.id} />;
       })}
+      <Pagination
+        totalPage={Math.floor(totalPost / 3 + 1)}
+        changePage={handlePage}
+      />
     </div>
   );
 };

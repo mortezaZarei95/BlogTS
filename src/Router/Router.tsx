@@ -1,56 +1,30 @@
-import React, { createContext, useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "../components/Layout/Layout";
-import NotFount from "../components/Layout/NotFound";
-import Posts, { Post } from "../Pages/Posts/Posts";
-import NewPost from "../Pages/New Post/NewPost";
-import Saved from "../Pages/Saved/Saved";
+import { createContext, useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { routelist } from './routeList';
+
+import { Post as PostType } from '../Pages/Posts/Posts';
 
 interface BlogContextType {
-  posts: Post[];
-  setposts: (postList: Post[]) => void;
-  savedposts: Post[];
-  savedsetposts: (savedpostlist: Post[]) => void;
+  posts: PostType[];
+  setPosts: (postList: PostType[]) => void;
+  savedPosts: PostType[];
+  savedSetPosts: (savedpostlist: PostType[]) => void;
 }
 
 export const BlogContext = createContext<BlogContextType>({
   posts: [],
-  setposts: () => {},
-  savedposts: [],
-  savedsetposts: () => {},
+  setPosts: () => {},
+  savedPosts: [],
+  savedSetPosts: () => {},
 });
 const Router = () => {
-  const [posts, setposts] = useState<Post[]>([]); //TODO: setposts => setPosts
-  const [savedposts, savedsetposts] = useState<Post[]>([]);
-  console.log(BlogContext);
-
-  const router = createBrowserRouter(
-    //TODO: that would be nice if you move this array to routeList.ts file
-    [
-      {
-        path: "/",
-        element: <Layout />,
-        errorElement: <NotFount />,
-        children: [
-          {
-            path: "/",
-            element: <Posts />,
-          },
-          {
-            path: "/newpost",
-            element: <NewPost />,
-          },
-          {
-            path: "/saved",
-            element: <Saved />,
-          },
-        ],
-      },
-    ]
-  );
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [savedPosts, savedSetPosts] = useState<PostType[]>([]);
+  const router = createBrowserRouter(routelist);
   return (
     <BlogContext.Provider
-      value={{ posts, setposts, savedposts, savedsetposts }}
+      value={{ posts, setPosts, savedPosts, savedSetPosts }}
     >
       <RouterProvider router={router} />
     </BlogContext.Provider>

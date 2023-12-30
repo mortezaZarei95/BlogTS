@@ -1,19 +1,17 @@
 import { useContext } from "react"
 import { BlogContext } from "../../Router/Router"
-import Post from "./SavedPost"
 
+import Post from '../../components/page/post/Post';
 
 const Saved = () => {
-  const {savedposts , savedsetposts} = useContext(BlogContext)
-  return(
+  const { savedPosts, savedSetPosts } = useContext(BlogContext);
+  return (
     <div className="mt-4 flex flex-col gap-2 items-center">
-      {
-        savedposts.map(post => {
-          return  <Post post={post} />
-        })
-      }
+      {savedPosts.map((post) => {
+        return <Post post={post} key={post.id} isSavedPost={true} />;
+      })}
     </div>
-  )
-}
+  );
+};
 
 export default Saved

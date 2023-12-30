@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.pagination-item {
+  @apply w-6 h-6 border-[1px] border-black rounded-full flex justify-center items-center 
+}
